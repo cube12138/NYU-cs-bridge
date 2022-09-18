@@ -1,0 +1,434 @@
+//part 3 Obje
+struct c1 {
+    //struct 和 class 的唯一区别在于默认访问权限不同ct Oriented Programming(OOP)
+#include <iostream>
+#include <string>
+using namespace std;
+
+    //struct 默认权限为公共
+    //class  默认权限为私有
+};
+
+class student {
+    /*权限有三种 
+    公共权限public 类内类外都可访问
+    保护权限protected  类内可 类外不可 （子可访问父中内容）
+    私有权限private    类内可 类外不可 （子不可访问父中内容）
+    */
+    //公共权限
+public:
+   //class中的属性和行为 统一称其 成员
+    //属性（成员属性 成员变量）
+    string name;
+    int id;
+  
+    //行为(也叫成员函数 成员方法) 显示姓名和学号
+    void print() {
+        cout << "name is: " << name << endl;
+        cout << "id is: " << id << endl;
+    }
+
+    //另一种赋值方式：通过行为给属性赋值
+    void setName(string m_name) {
+        name = m_name;
+    }
+};
+int main1() {
+    //实例化对象
+    student xiaoming;
+
+    //给对象赋值
+    xiaoming.name = "xiaoming";
+    xiaoming.id = 44356;
+    //另一种赋值方式：通过行为给属性赋值 !有趣
+    xiaoming.setName("chengcheng");
+
+    //操作
+    xiaoming.print();
+    return 0;
+}
+
+
+
+
+
+第一章：预备知识
+1.2初始的10行结构:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+
+	return 0;
+}
+
+//调整精度
+    cout.setf(ios::fixed);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
+
+//生成x到y区间的随机整数
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main(){
+	srand(time(0));
+	int m;
+	m=rand()%(Y-X+1)+X;
+
+	return 0;}
+
+
+
+1.3注释 
+//这种是单行注释 一个好的代码注释可以占到20%左右
+/*这种是多行注释
+几行都可以 然后结尾*/
+
+1.4 变量是给一段内存空间起名字，方便操作这段内存
+
+1.5常量
+ 1.#define宏常量； （通常定义在常量的上方）  
+   eg：#define day 7
+ 2.const修饰的变量 (danmu:可以用指针修改)
+   eg：const int mouth =12
+
+1.6关键字
+不要用关键字起名 错误示范 int int=10 错误！
+ 
+1.7标识符命名规则：见名知意
+数字不能做第一个字符，字母或者下划线可以
+而且标识符是区分大小写！
+
+
+第二章 数据类型
+2.1 数据类型存在 是为了给变量分配合适的内存空间
+    1.短整型 short num1=10         （占两个字节； 取值范围是-32768~32767之间 不可超出这个范围 ）
+    2.整姓   int num2=10
+    3.长整型 long num3=10
+    4.长长整型 longlong num4=10
+    这四种分配的内存空间和取值范围都不同
+
+2.2可以用sizeof求出数据类型专用的类型大小 结构是 sizeof(数据类型/变量)
+  eg：short num1=10 
+      sizeof(short)
+      sizeof(num1) //变量名或者类型放进去都行
+      cout<<"short占用的内存空间为"<<sizeof(int)<<endl;
+     //这个输出应该是2 try一下
+
+2.3 实型
+    1.单精度：flout 7位有效数字
+    2.双精度：double 15-6位有效数字
+    3.科学计数法的表示：3e2 就是3*10^2次方
+                        3e-2 就是3*10^-2次
+
+     float f1 = 3.14f;
+    //这里如果不加f 鼠标放在数字上面不会显示flout类型 而是double类型
+    //3.14 有效数字位数是3
+
+2.4 转义字符 char Literals 
+    1.\t   （是反斜杠）这是一个制表符号 作用是可以整齐的输出数据
+    （aaa的例子 整个占8个字符 打出来更整齐）
+    2.\n    是换行
+     （eg 可以把endl换成\n    eg： cout<<"hello world\n"）
+    3.\\  代表一个反斜线字符 第一个\是告诉电脑要输出特殊符号了 第二个\是这个反斜线特殊字符
+
+2.5 字符型变量
+    char ch= 'a'(一定是单引号，双引号里的是string)
+    占1个byte
+
+2.6 字符串 string
+    string str = "hello world"
+    但是！！一定要加头文件 #include<string>
+    string str;
+    cout<<"please enter your name";//fangtong zhao
+    getline(cin,str) //如果直接cin>>str 只能输入fangtong
+
+getline(cin,str) or cin  
+
+str[i]
+
+str.substr(index,length)
+
+str.length()
+
+== !=... 按顺序比较ASCII value//
+
+str.find("de")  //输出是de的index 应该是个数字
+//userEnter.find(" ", position) == string::npos //从position的位置开始找
+
+string::npos
+        
+
+2.7 布尔类型 bool
+    占1个字节（byte）
+    只有flag=0时，返回值才是0（假）其他情况都是1（eg 输入400.输入负数啥的 只要不是0 都是1）
+    bool flag= true;
+    cout<< flag<<endl;  //输出值为1（真）
+    flag= false;
+    cout<< flag << endl; //输出值为0（假）
+
+    
+
+第三章 运算符
+
+
+第四章 程序流程结构
+4.1 选择结构
+    4.1.3 switch结构
+        switch（表达式）
+    {
+        case 结果1（a constant value）：//冒号
+        执行语句；
+        break; //一定要加break 否则后面的一直在运行
+
+        case 结果2：
+        执行语句；
+        break;
+
+        default：
+        执行语句；        
+     }
+     4.1.5(补充)
+     if ;else if ;else
+
+     //if和switch的区别：
+     1.缺点：switch判断时只能是一个int或char，不可以是一个区间
+     2.优点：结构清晰，执行效率高
+
+     
+下一章 数组
+    数组是从0开始索引的
+    三种定义方法：   
+        //1. 数据类型 数组名[数组长度]
+        int arr1[5];
+
+        //给数组中的元素进行赋值：
+        arr[0]=10 //一定是从0开始索引别忘记了
+        arr[1]=20
+        arr[2]=30
+        arr[3]=40
+        arr[4]=50 //到 数组长度-1 就结束了
+        (note:
+         int arr[5];
+        arr={10,20,30,40,50} 这种不行 //没有这种定义方式 
+        )
+
+        //访问数据元素：(可以利用循环输出)
+        for(int i=0;i<5;i++)
+        cout<<arr[i];
+
+
+        //2. 数据类型  数组名[数组长度]={值1， 值2，值3 ...}(如果没全部赋值会用0填补)
+        int arr2[5]={10,20,30,40,50}
+
+        //3. 数据类型 数组名[ ]={{值1， 值2，值3 ...}(没放数组长度)(通过放入元素个数系统会得出数组长度 在程序中光标放在数组名处会有显示)
+        int arr3[]={1,2,3,4,5,6,7,8,9}
+
+    数组名用途：
+        //1. 获取整个数组占用的内存空间大小
+        int arr[10]={1,2,3,4,5,6,7,8,9,10}
+
+        cout<<"整个数组的内存空间："<<sizeof(arr);
+        cout<<"单个元素的内存空间："<<sizeof(arr[0]);
+        cout<<"元素个数："<<sizeof(arr)/sizeof(arr[0];
+
+        //2. 获取数组的首地址
+        cout<<"数组的首地址为"<< (int)arr ;//int 是用来将16进制转换成10进制（每次都不一样 是因为这是动态数组）
+        cout<<"数组的第一个元素地址为"<< (int)&arr[0] ;//注意 & 符号是 取址符号
+        cout<<"数组的第二个元素地址为"<< (int)&arr[1] ;
+
+        //arr=100 是错误的，数组名是一个常量 不可以赋值
+
+
+
+下一章 指针 pointer
+    1.如何定义
+        int a = 20;
+	    int* p;  //指针的定义语法 数据类型*变量名
+	    p = &a;  //指针p就是存储a的地址 所以用取址符号 把a和p联系起来
+        简写：	int* p = &a
+      
+
+	    cout << p << endl; //打出的是地址 16进制
+	    cout << &a << endl;//打出的是地址 16进制
+
+	    *p = 1000;
+	    cout << *p << endl; //通过*p去改变变量a指向的内存 所以*p控制a 变为了1000
+	    cout << a << endl;
+
+    2.指针所占内存
+        在32位的操作系统下（不是电脑的内存），指针占用4个字节空间（是一个16位的数字），
+        而64位的操作系统 指针占用8个字节空间
+        （本地Windows调试器旁边的*86是32位操作系统；*64是64位操作系统）
+
+        int* p = &a（可以理解为int*是一个数据类型 p是变量）
+        故可以用sizeof(p)去看指针所占内存的大小
+
+    3.空指针
+        指向编号为0的空间
+        用于初始化指针变量
+        注意空指针指向的内存是不可以访问的 因为0-255号内存是留给系统的；
+
+        int*p=NULL
+        cout<<*p; //出现*p的操作都会操作 不可以对这块地址的内存进行操作
+        但是可以cout<<p;  打出来是8个0
+
+    4.野指针
+        指向非法的内存空间 就是你自己规定了这个内存我想分配到哪 随便打进去一个16进制的数字 不太行
+        比如：int*p=(int*)0x1100 //用int*进行一下变量的转换
+        cout<<*p; //访问野指针会报错。
+
+  // Vector - don't need to worry about the size.
+    // #include <vector>
+    // vector <int> name;
+    // vector <char> name = {'a','b','c'};
+    // name.push_back(5) -- add number 5 to the vector
+    // name.size() -- how many items it has.
+    vector<int> v; // creating a vector with datatype of int.
+    for(int x = 0; x < 10; x++){
+        v.push_back(x * 100); // adding more terms.
+    }
+    for(int x = 0; x < v.size(); x++){
+        cout << v[x] << " ";
+    }
+    cout << endl;
+    cout << "Ranged for loop" << endl; // new format borrowed from Java
+    for(int i: v){
+        cout << i << " ";
+    }
+    cout << endl;
+    
+    return 0;
+
+     // pointer creating new memory (both variable and array).
+    // must delete and point to NULL -- delete ptr;
+    int y = 5;
+    int *arr = new int[y]; // creating a new array with NO NAME.
+    delete [] arr; // To delete it.
+    
+
+
+    
+//webinar week 10
+#include <iostream>
+#include <vector>
+using namespace std;
+
+string* readText1(int& outTextArrSize);
+string* readText2(int& outTextArrSize);
+void readText2Alternative(string*& outTextArr, int& outTextArrSize);
+vector<string> readText3();
+int main_arr();
+int main_arr_alternative();
+int main_vector();
+
+int main() {
+    main_arr_alternative();
+    return 0;
+}
+
+int main_arr_alternative() {
+    string* textArr = NULL;
+    int textArrSize, i;
+
+    readText2Alternative(textArr, textArrSize);
+
+    cout << "Your text is:" << endl;
+    for (i = 0; i < textArrSize; i += 1)
+        cout << i + 1 << ". " << textArr[i] << endl;
+
+    delete[]textArr;
+    textArr = NULL;
+    return 0;
+}
+void readText2Alternative(string*& outTextArr, int& outTextArrSize) {
+    string* textArr;
+    int textArrSize;
+    textArr = readText2(textArrSize);
+    outTextArrSize = textArrSize;
+    outTextArr = textArr;
+}
+int main_arr() {
+    string* textArr = NULL;
+    int textArrSize, i;
+    textArr = readText2(textArrSize);
+    cout << "Your text is:" << endl;
+    for (i = 0; i < textArrSize; i += 1)
+        cout << i + 1 << ". " << textArr[i] << endl;
+    delete[]textArr;
+    textArr = NULL;
+    return 0;
+}
+string* readText1(int& outTextArrSize) {
+    string* textArr;
+    int textArrSize, i;
+    cout << "Please enter number of lines:" << endl;
+    cin >> textArrSize;
+    cin.ignore(1); // getting rid of new line in the input（因为结合了上面的cin才会造成这种问题）
+    textArr = new string[textArrSize];
+    cout << "Please enter " << textArrSize << " lines:" << endl;
+    for (i = 0; i < textArrSize; i += 1)
+        getline(cin, textArr[i]);
+    outTextArrSize = textArrSize;
+    return textArr;
+}
+string* readText2(int& outTextArrSize) {
+    string* textArr;
+    int textArrSize, textArrPhysicalSize;
+    bool seenEmptyLine;
+    string currLine;
+    cout << "Please enter a sequence of lines." << endl;
+    cout << "To end the input, type an empty line" << endl;
+    textArr = new string[1];
+    textArrSize = 0;
+    textArrPhysicalSize = 1;
+
+    seenEmptyLine = false;
+    while (seenEmptyLine == false) {
+        getline(cin, currLine);
+        if (currLine == "")
+            seenEmptyLine = true;
+        else {
+            if (textArrSize == textArrPhysicalSize) {
+                string* newTextArr;
+                newTextArr = new string[2 * textArrPhysicalSize];
+                for (int i = 0; i < textArrSize; i += 1)
+                    newTextArr[i] = textArr[i];
+                delete[]textArr;
+                textArr = newTextArr;
+                textArrPhysicalSize *= 2;
+            }
+            textArr[textArrSize] = currLine;
+            textArrSize += 1;
+        }
+    }
+    outTextArrSize = textArrSize;
+    return textArr;
+}
+int main_vector() {
+    vector<string> textVector;
+    textVector = readText3();
+    cout << "Your text is:" << endl;
+    for (int i = 0; i < textVector.size(); i += 1)
+        cout << i + 1 << ". " << textVector[i] << endl;
+    return 0;
+}
+vector<string> readText3() {
+    vector<string> textVector;
+    bool seenEmptyLine;
+    string currLine;
+    cout << "Please enter a sequence of lines." << endl;
+    cout << "To end the input, type an empty line" << endl;
+    seenEmptyLine = false;
+    while (seenEmptyLine == false) {
+        getline(cin, currLine);
+        if (currLine == "")
+            seenEmptyLine = true;
+        else
+            textVector.push_back(currLine);
+    }
+    return textVector;
